@@ -1,0 +1,264 @@
+minetest.register_craft( {
+	output = "pipeworks:pipe_1_empty 12",
+	recipe = {
+			{ "", "", "" },
+	},
+})
+minetest.register_craft( {
+	output = "pipeworks:straight_pipe_empty 3",
+	recipe = {
+			{ "pipeworks:pipe_1_empty", "pipeworks:pipe_1_empty", "pipeworks:pipe_1_empty" },
+	},
+})
+minetest.register_craft( {
+	output = "pipeworks:spigot 3",
+	recipe = {
+			{ "pipeworks:pipe_1_empty", "" },
+			{ "", "pipeworks:pipe_1_empty" },
+	},
+})
+minetest.register_craft( {
+output = "pipeworks:entry_panel_empty 2",
+recipe = {
+	{ "", "pipeworks:pipe_1_empty", "" },
+},
+})
+minetest.register_craft( {
+	output = "pipeworks:pump_off 2",
+	recipe = {
+	},
+})
+minetest.register_craft( {
+	output = "pipeworks:valve_off_empty 2",
+	recipe = {
+			{ "", "group:stick", "" },
+	},
+})
+minetest.register_craft( {
+	output = "pipeworks:storage_tank_0 2",
+	recipe = {
+	},
+})
+minetest.register_craft( {
+	output = "pipeworks:grating 2",
+	recipe = {
+			{ "", "pipeworks:pipe_1_empty", "" },
+	},
+})
+minetest.register_craft( {
+	output = "pipeworks:flow_sensor_empty 2",
+	recipe = {
+			{ "pipeworks:pipe_1_empty", "mesecons:mesecon", "pipeworks:pipe_1_empty" },
+	},
+})
+minetest.register_craft( {
+	output = "pipeworks:fountainhead 2",
+	recipe = {
+			{ "pipeworks:pipe_1_empty" },
+			{ "pipeworks:pipe_1_empty" }
+	},
+})
+minetest.register_craft( {
+	output = "pipeworks:filter 2",
+	recipe = {
+	},
+})
+minetest.register_craft( {
+	output = "pipeworks:mese_filter 2",
+	recipe = {
+	},
+})
+	minetest.register_craft( {
+		output = "pipeworks:digiline_filter 2",
+		recipe = {
+			{ "group:stick", "digilines:wire_std_00000000", "basic_materials:plastic_sheet" },
+		},
+	})
+minetest.register_craft( {
+	output = "pipeworks:autocrafter 2",
+	recipe = {
+	},
+})
+minetest.register_craft( {
+	output = "pipeworks:steel_pane_embedded_tube 1",
+	recipe = {
+		{ "", "pipeworks:tube_1", "" },
+	},
+})
+minetest.register_craft({
+	output = "pipeworks:trashcan",
+	recipe = {
+		{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+	},
+})
+minetest.register_craft( {
+	output = "pipeworks:teleport_tube_1 2",
+	recipe = {
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+	},
+})
+	minetest.register_craft( {
+		output = "pipeworks:priority_tube_1 6",
+		recipe = {
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+		},
+	})
+	minetest.register_craft( {
+		output = "pipeworks:accelerator_tube_1 2",
+		recipe = {
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+		},
+	})
+	minetest.register_craft( {
+		output = "pipeworks:crossing_tube_1 5",
+		recipe = {
+			{ "", "pipeworks:tube_1", "" },
+			{ "pipeworks:tube_1", "pipeworks:tube_1", "pipeworks:tube_1" },
+			{ "", "pipeworks:tube_1", "" }
+		},
+	})
+	minetest.register_craft({
+		output = "pipeworks:one_way_tube 2",
+		recipe = {
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+		},
+	})
+	minetest.register_craft( {
+		output = "pipeworks:mese_tube_000000 2",
+		recipe = {
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+		},
+	})
+	minetest.register_craft( {
+		type = "shapeless",
+		output = "pipeworks:mese_tube_000000",
+		recipe = {
+			"pipeworks:tube_1",
+		},
+	})
+	minetest.register_craft( {
+		output = "pipeworks:tag_tube_000000 2",
+		recipe = {
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+		},
+	})
+	minetest.register_craft( {
+		type = "shapeless",
+		output = "pipeworks:tag_tube_000000",
+		recipe = {
+			"pipeworks:mese_tube_000000",
+		},
+	})
+	minetest.register_craft( {
+		output = "pipeworks:sand_tube_1 2",
+		recipe = {
+			{"basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet"},
+			{"group:sand",                 "group:sand",                 "group:sand"},
+			{"basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet"}
+		},
+	})
+	minetest.register_craft( {
+		output = "pipeworks:sand_tube_1",
+		recipe = {
+			{"group:sand", "pipeworks:tube_1", "group:sand"},
+		},
+	})
+	minetest.register_craft( {
+		output = "pipeworks:mese_sand_tube_1 2",
+		recipe = {
+			{"basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+			{"basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+		},
+	})
+	minetest.register_craft( {
+		type = "shapeless",
+		output = "pipeworks:mese_sand_tube_1",
+		recipe = {
+			"pipeworks:sand_tube_1",
+		},
+	})
+	minetest.register_craft({
+		output = "pipeworks:deployer_off",
+		recipe = {
+		}
+	})
+	minetest.register_craft({
+		output = "pipeworks:dispenser_off",
+		recipe = {
+		}
+	})
+	minetest.register_craft({
+		output = "pipeworks:nodebreaker_off",
+		recipe = {
+			{ "basic_materials:gear_steel", "basic_materials:gear_steel",   "basic_materials:gear_steel"	},
+			{ "group:wood",	"mesecons:mesecon",  "group:wood" },
+		}
+	})
+	minetest.register_craft( {
+		output = nodename .. " 1",
+		recipe = {
+			{ opts.base_ingredient, opts.base_ingredient, opts.base_ingredient },
+			{ opts.base_ingredient, "pipeworks:tube_1", opts.base_ingredient },
+			{ opts.base_ingredient, opts.base_ingredient, opts.base_ingredient }
+		},
+	})
+	minetest.register_craft( {
+		output = "pipeworks:detector_tube_off_1 2",
+		recipe = {
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+			{ "mesecons:mesecon", "mesecons_materials:silicon", "mesecons:mesecon" },
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+		},
+	})
+	minetest.register_craft( {
+		output = "pipeworks:digiline_detector_tube_1 2",
+		recipe = {
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+			{ "digilines:wire_std_00000000", "mesecons_materials:silicon", "digilines:wire_std_00000000" },
+			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+		},
+	})
+	minetest.register_craft({
+		type = "shapeless",
+		output = "pipeworks:conductor_tube_off_1",
+		recipe = {"pipeworks:tube_1", "mesecons:mesecon"}
+	})
+	minetest.register_craft({
+		type = "shapeless",
+		output = "pipeworks:digiline_conductor_tube_1",
+		recipe = {"pipeworks:tube_1", "digilines:wire_std_00000000"}
+	})
+	minetest.register_craft({
+		type = "shapeless",
+		output = "pipeworks:mesecon_and_digiline_conductor_tube_off_1",
+		recipe = {"pipeworks:tube_1", "mesecons:mesecon", "digilines:wire_std_00000000"}
+	})
+	minetest.register_craft({
+		type = "shapeless",
+		output = "pipeworks:mesecon_and_digiline_conductor_tube_off_1",
+		recipe = {"pipeworks:conductor_tube_off_1", "digilines:wire_std_00000000"}
+	})
+	minetest.register_craft({
+		type = "shapeless",
+		output = "pipeworks:mesecon_and_digiline_conductor_tube_off_1",
+		recipe = {"pipeworks:digiline_conductor_tube_1", "mesecons:mesecon"}
+	})
+minetest.register_craft({
+	type = "shapeless",
+	output = BASENAME.."000000",
+	recipe = {"pipeworks:mese_tube_000000", "mesecons_luacontroller:luacontroller0000"},
+})
+minetest.register_craft( {
+	output = "pipeworks:tube_1 6",
+	recipe = {
+	        { "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+	        { "", "", "" },
+	        { "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+	},
+})

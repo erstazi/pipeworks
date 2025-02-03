@@ -1,0 +1,459 @@
+1,26c1,2
+< 	minetest.register_craft({
+< 		output = "pipeworks:nodebreaker_off",
+< 		recipe = {
+< 			{ "pipeworks:gear", "pipeworks:gear",   "pipeworks:gear"    },
+< 			{ "default:stone", "mesecons:piston",   "default:stone" },
+< 			{ "group:wood",    "mesecons:mesecon",  "group:wood" },
+< 		}
+< 	})
+< 	minetest.register_craft({
+< 		output = "pipeworks:deployer_off",
+< 		recipe = {
+< 			{ "group:wood",    "default:chest",    "group:wood"    },
+< 			{ "default:stone", "mesecons:piston",  "default:stone" },
+< 			{ "default:stone", "mesecons:mesecon", "default:stone" },
+< 		}
+< 	})
+< 	minetest.register_craft({
+< 		output = "pipeworks:dispenser_off",
+< 		recipe = {
+< 			{ "default:desert_sand", "default:chest",    "default:desert_sand" },
+< 			{ "default:stone",       "mesecons:piston",  "default:stone"       },
+< 			{ "default:stone",       "mesecons:mesecon", "default:stone"       },
+< 		}
+< 	})
+< minetest.register_craft({
+< 	output = "pipeworks:trashcan",
+---
+> minetest.register_craft( {
+> 	output = "pipeworks:pipe_1_empty 12",
+28,30c4
+< 		{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
+< 		{ "default:steel_ingot", "", "default:steel_ingot" },
+< 		{ "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
+---
+> 			{ "", "", "" },
+34,39c8,18
+<         output = "pipeworks:pipe_1_empty 12",
+<         recipe = {
+<                 { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
+<                 { "", "", "" },
+<                 { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" }
+<         },
+---
+> 	output = "pipeworks:straight_pipe_empty 3",
+> 	recipe = {
+> 			{ "pipeworks:pipe_1_empty", "pipeworks:pipe_1_empty", "pipeworks:pipe_1_empty" },
+> 	},
+> })
+> minetest.register_craft( {
+> 	output = "pipeworks:spigot 3",
+> 	recipe = {
+> 			{ "pipeworks:pipe_1_empty", "" },
+> 			{ "", "pipeworks:pipe_1_empty" },
+> 	},
+42,45c21,24
+<         output = "pipeworks:straight_pipe_empty 3",
+<         recipe = {
+<                 { "pipeworks:pipe_1_empty", "pipeworks:pipe_1_empty", "pipeworks:pipe_1_empty" },
+<         },
+---
+> output = "pipeworks:entry_panel_empty 2",
+> recipe = {
+> 	{ "", "pipeworks:pipe_1_empty", "" },
+> },
+48,52c27,29
+<         output = "pipeworks:spigot 3",
+<         recipe = {
+<                 { "pipeworks:pipe_1_empty", "" },
+<                 { "", "pipeworks:pipe_1_empty" },
+<         },
+---
+> 	output = "pipeworks:pump_off 2",
+> 	recipe = {
+> 	},
+55c32
+< 	output = "pipeworks:entry_panel_empty 2",
+---
+> 	output = "pipeworks:valve_off_empty 2",
+57,59c34
+< 		{ "", "default:steel_ingot", "" },
+< 		{ "", "pipeworks:pipe_1_empty", "" },
+< 		{ "", "default:steel_ingot", "" },
+---
+> 			{ "", "group:stick", "" },
+63,68c38,40
+<         output = "pipeworks:pump_off 2",
+<         recipe = {
+<                 { "default:stone", "default:steel_ingot", "default:stone" },
+<                 { "default:copper_ingot", "default:mese_crystal_fragment", "default:copper_ingot" },
+<                 { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" }
+<         },
+---
+> 	output = "pipeworks:storage_tank_0 2",
+> 	recipe = {
+> 	},
+71,76c43,46
+<         output = "pipeworks:valve_off_empty 2",
+<         recipe = {
+<                 { "", "group:stick", "" },
+<                 { "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
+<                 { "", "default:steel_ingot", "" }
+<         },
+---
+> 	output = "pipeworks:grating 2",
+> 	recipe = {
+> 			{ "", "pipeworks:pipe_1_empty", "" },
+> 	},
+79,84c49,52
+<         output = "pipeworks:storage_tank_0 2",
+<         recipe = {
+<                 { "", "default:steel_ingot", "default:steel_ingot" },
+<                 { "default:steel_ingot", "default:glass", "default:steel_ingot" },
+<                 { "default:steel_ingot", "default:steel_ingot", "" }
+<         },
+---
+> 	output = "pipeworks:flow_sensor_empty 2",
+> 	recipe = {
+> 			{ "pipeworks:pipe_1_empty", "mesecons:mesecon", "pipeworks:pipe_1_empty" },
+> 	},
+87,92c55,59
+<         output = "pipeworks:grating 2",
+<         recipe = {
+<                 { "default:steel_ingot", "", "default:steel_ingot" },
+<                 { "", "pipeworks:pipe_1_empty", "" },
+<                 { "default:steel_ingot", "", "default:steel_ingot" }
+<         },
+---
+> 	output = "pipeworks:fountainhead 2",
+> 	recipe = {
+> 			{ "pipeworks:pipe_1_empty" },
+> 			{ "pipeworks:pipe_1_empty" }
+> 	},
+95,98c62,64
+<         output = "pipeworks:flow_sensor_empty 2",
+<         recipe = {
+<                 { "pipeworks:pipe_1_empty", "mesecons:mesecon", "pipeworks:pipe_1_empty" },
+<         },
+---
+> 	output = "pipeworks:filter 2",
+> 	recipe = {
+> 	},
+101,105c67,69
+<         output = "pipeworks:fountainhead 2",
+<         recipe = {
+<                 { "pipeworks:pipe_1_empty" },
+< 				{ "pipeworks:pipe_1_empty" }
+<         },
+---
+> 	output = "pipeworks:mese_filter 2",
+> 	recipe = {
+> 	},
+107,121c71,72
+< 	minetest.register_craftitem(":homedecor:oil_extract", {
+< 		    description = "Oil extract",
+< 		    inventory_image = "homedecor_oil_extract.png",
+< 	})
+< 	minetest.register_craftitem(":homedecor:paraffin", {
+< 		    description = "Unprocessed paraffin",
+< 		    inventory_image = "homedecor_paraffin.png",
+< 	})
+< 	minetest.register_craftitem(":homedecor:plastic_sheeting", {
+< 		    description = "Plastic sheet",
+< 		    inventory_image = "homedecor_plastic_sheeting.png",
+< 	})
+< 	minetest.register_craft({
+< 		type = "shapeless",
+< 		output = "homedecor:oil_extract 4",
+---
+> 	minetest.register_craft( {
+> 		output = "pipeworks:digiline_filter 2",
+123,129c74,75
+< 			"group:leaves",
+< 			"group:leaves",
+< 			"group:leaves",
+< 			"group:leaves",
+< 			"group:leaves",
+< 			"group:leaves"
+< 		}
+---
+> 			{ "group:stick", "digilines:wire_std_00000000", "basic_materials:plastic_sheet" },
+> 		},
+131,134c77,106
+< 	minetest.register_craft({
+< 		    type = "cooking",
+< 		    output = "homedecor:paraffin",
+< 		    recipe = "homedecor:oil_extract",
+---
+> minetest.register_craft( {
+> 	output = "pipeworks:autocrafter 2",
+> 	recipe = {
+> 	},
+> })
+> minetest.register_craft( {
+> 	output = "pipeworks:steel_pane_embedded_tube 1",
+> 	recipe = {
+> 		{ "", "pipeworks:tube_1", "" },
+> 	},
+> })
+> minetest.register_craft({
+> 	output = "pipeworks:trashcan",
+> 	recipe = {
+> 		{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+> 	},
+> })
+> minetest.register_craft( {
+> 	output = "pipeworks:teleport_tube_1 2",
+> 	recipe = {
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+> 	},
+> })
+> 	minetest.register_craft( {
+> 		output = "pipeworks:priority_tube_1 6",
+> 		recipe = {
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+> 		},
+136,139c108,113
+< 	minetest.register_craft({
+< 		    type = "cooking",
+< 		    output = "homedecor:plastic_sheeting",
+< 		    recipe = "homedecor:paraffin",
+---
+> 	minetest.register_craft( {
+> 		output = "pipeworks:accelerator_tube_1 2",
+> 		recipe = {
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+> 		},
+141,144c115,121
+< 	minetest.register_craft({
+< 		    type = "fuel",
+< 		    recipe = "homedecor:oil_extract",
+< 		    burntime = 30,
+---
+> 	minetest.register_craft( {
+> 		output = "pipeworks:crossing_tube_1 5",
+> 		recipe = {
+> 			{ "", "pipeworks:tube_1", "" },
+> 			{ "pipeworks:tube_1", "pipeworks:tube_1", "pipeworks:tube_1" },
+> 			{ "", "pipeworks:tube_1", "" }
+> 		},
+147,149c124,128
+< 		    type = "fuel",
+< 		    recipe = "homedecor:paraffin",
+< 		    burntime = 30,
+---
+> 		output = "pipeworks:one_way_tube 2",
+> 		recipe = {
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+> 		},
+151,167d129
+< 	minetest.register_craft({
+< 		    type = "fuel",
+< 		    recipe = "homedecor:plastic_sheeting",
+< 		    burntime = 30,
+< 	})
+< minetest.register_craftitem("pipeworks:gear", {
+< 	description = "Gear",
+< 	inventory_image = "pipeworks_gear.png",
+< })
+< minetest.register_craft( {
+<         output = "pipeworks:gear 6",
+<         recipe = {
+<                 { "", 			"default:steel_ingot",	"" },
+<                 { "default:steel_ingot","default:stone",	"default:steel_ingot" },
+<                 { "",			"default:steel_ingot",	"" }
+<         },
+< })
+171,173c133,134
+< 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
+< 			{ "", "default:mese_crystal", "" },
+< 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
+---
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+181,184c142,155
+< 			"default:mese_crystal_fragment",
+< 			"default:mese_crystal_fragment",
+< 			"default:mese_crystal_fragment",
+< 			"default:mese_crystal_fragment"
+---
+> 		},
+> 	})
+> 	minetest.register_craft( {
+> 		output = "pipeworks:tag_tube_000000 2",
+> 		recipe = {
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+> 		},
+> 	})
+> 	minetest.register_craft( {
+> 		type = "shapeless",
+> 		output = "pipeworks:tag_tube_000000",
+> 		recipe = {
+> 			"pipeworks:mese_tube_000000",
+190c161
+< 			{"homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting"},
+---
+> 			{"basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet"},
+192c163
+< 			{"homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting"}
+---
+> 			{"basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet"}
+204,206c175,176
+< 			{"homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
+< 			{"group:sand",                 "default:mese_crystal",       "group:sand" },
+< 			{"homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
+---
+> 			{"basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+> 			{"basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+214,217d183
+< 			"default:mese_crystal_fragment",
+< 			"default:mese_crystal_fragment",
+< 			"default:mese_crystal_fragment",
+< 			"default:mese_crystal_fragment"
+220,227c186,210
+< minetest.register_craft( {
+< 	output = "pipeworks:autocrafter 2",
+< 	recipe = {
+< 	        { "default:steel_ingot", "default:mese_crystal", "default:steel_ingot" },
+< 	        { "homedecor:plastic_sheeting", "default:steel_ingot", "homedecor:plastic_sheeting" },
+< 	        { "default:steel_ingot", "default:mese_crystal", "default:steel_ingot" }
+< 	},
+< })
+---
+> 	minetest.register_craft({
+> 		output = "pipeworks:deployer_off",
+> 		recipe = {
+> 		}
+> 	})
+> 	minetest.register_craft({
+> 		output = "pipeworks:dispenser_off",
+> 		recipe = {
+> 		}
+> 	})
+> 	minetest.register_craft({
+> 		output = "pipeworks:nodebreaker_off",
+> 		recipe = {
+> 			{ "basic_materials:gear_steel", "basic_materials:gear_steel",   "basic_materials:gear_steel"	},
+> 			{ "group:wood",	"mesecons:mesecon",  "group:wood" },
+> 		}
+> 	})
+> 	minetest.register_craft( {
+> 		output = nodename .. " 1",
+> 		recipe = {
+> 			{ opts.base_ingredient, opts.base_ingredient, opts.base_ingredient },
+> 			{ opts.base_ingredient, "pipeworks:tube_1", opts.base_ingredient },
+> 			{ opts.base_ingredient, opts.base_ingredient, opts.base_ingredient }
+> 		},
+> 	})
+231c214
+< 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
+---
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+233c216
+< 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
+---
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+239c222
+< 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
+---
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+241c224
+< 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
+---
+> 			{ "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+275,322d257
+< 	output = "pipeworks:steel_block_embedded_tube 1",
+< 	recipe = {
+< 		{ "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" },
+< 		{ "default:steel_ingot", "pipeworks:tube_1", "default:steel_ingot" },
+< 		{ "default:steel_ingot", "default:steel_ingot", "default:steel_ingot" }
+< 	},
+< })
+< minetest.register_craft( {
+< 	output = "pipeworks:steel_pane_embedded_tube 1",
+< 	recipe = {
+< 		{ "", "default:steel_ingot", "" },
+< 		{ "", "pipeworks:tube_1", "" },
+< 		{ "", "default:steel_ingot", "" }
+< 	},
+< })
+< minetest.register_craft( {
+< 	output = "pipeworks:filter 2",
+< 	recipe = {
+< 	        { "default:steel_ingot", "default:steel_ingot", "homedecor:plastic_sheeting" },
+< 	        { "group:stick", "default:mese_crystal", "homedecor:plastic_sheeting" },
+< 	        { "default:steel_ingot", "default:steel_ingot", "homedecor:plastic_sheeting" }
+< 	},
+< })
+< minetest.register_craft( {
+< 	output = "pipeworks:mese_filter 2",
+< 	recipe = {
+< 	        { "default:steel_ingot", "default:steel_ingot", "homedecor:plastic_sheeting" },
+< 	        { "group:stick", "default:mese", "homedecor:plastic_sheeting" },
+< 	        { "default:steel_ingot", "default:steel_ingot", "homedecor:plastic_sheeting" }
+< 	},
+< })
+< 	minetest.register_craft( {
+< 		output = "pipeworks:digiline_filter 2",
+< 		recipe = {
+< 			{ "default:steel_ingot", "default:steel_ingot", "homedecor:plastic_sheeting" },
+< 			{ "group:stick", "digilines:wire_std_00000000", "homedecor:plastic_sheeting" },
+< 			{ "default:steel_ingot", "default:steel_ingot", "homedecor:plastic_sheeting" }
+< 		},
+< 	})
+< minetest.register_craft( {
+< 	output = "pipeworks:teleport_tube_1 2",
+< 	recipe = {
+< 	        { "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
+< 	        { "default:desert_stone", "default:mese", "default:desert_stone" },
+< 	        { "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
+< 	},
+< })
+< minetest.register_craft( {
+325c260
+< 	        { "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
+---
+> 	        { "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" },
+327c262
+< 	        { "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
+---
+> 	        { "basic_materials:plastic_sheet", "basic_materials:plastic_sheet", "basic_materials:plastic_sheet" }
+330,361d264
+< 	minetest.register_craft( {
+< 		output = "pipeworks:priority_tube_1 6",
+< 		recipe = {
+< 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
+< 			{ "default:gold_ingot", "", "default:gold_ingot" },
+< 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
+< 		},
+< 	})
+< 	minetest.register_craft( {
+< 		output = "pipeworks:accelerator_tube_1 2",
+< 		recipe = {
+< 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
+< 			{ "default:mese_crystal_fragment", "default:steel_ingot", "default:mese_crystal_fragment" },
+< 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
+< 		},
+< 	})
+< 	minetest.register_craft( {
+< 		output = "pipeworks:crossing_tube_1 5",
+< 		recipe = {
+< 			{ "", "pipeworks:tube_1", "" },
+< 			{ "pipeworks:tube_1", "pipeworks:tube_1", "pipeworks:tube_1" },
+< 			{ "", "pipeworks:tube_1", "" }
+< 		},
+< 	})
+< 	minetest.register_craft({
+< 		output = "pipeworks:one_way_tube 2",
+< 		recipe = {
+< 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" },
+< 			{ "group:stick", "default:mese_crystal", "homedecor:plastic_sheeting" },
+< 			{ "homedecor:plastic_sheeting", "homedecor:plastic_sheeting", "homedecor:plastic_sheeting" }
+< 		},
+< 	})
