@@ -9,16 +9,16 @@ local filename = minetest.get_worldpath().."/luaentities"
 local function read_file()
 	local f = io.open(filename, "r")
 	if f == nil then return {} end
-    	local t = f:read("*all")
-    	f:close()
+	local t = f:read("*all")
+	f:close()
 	if t == "" or t == nil then return {} end
 	return minetest.deserialize(t) or {}
 end
 
 local function write_file(tbl)
 	local f = io.open(filename, "w")
-    	f:write(minetest.serialize(tbl))
-    	f:close()
+	f:write(minetest.serialize(tbl))
+	f:close()
 end
 
 local function read_entities()
@@ -36,7 +36,7 @@ local function read_entities()
 		y=math.min(30927,y)
 		z=math.min(30927,z)
 
-		entity.start_pos.x = x                 
+		entity.start_pos.x = x
 		entity.start_pos.y = y
 		entity.start_pos.z = z
 
@@ -46,6 +46,11 @@ local function read_entities()
 end
 
 local function write_entities()
+	if not luaentity.entities then
+		-- This can happen if crashing on startup, causing another error that
+		-- masks the original one. Return gracefully in that case instead.
+		return
+	end
 	for _, entity in pairs(luaentity.entities) do
 		setmetatable(entity, nil)
 		for _, attached in pairs(entity._attached_entities) do
@@ -62,37 +67,54 @@ end
 minetest.register_on_shutdown(write_entities)
 luaentity.entities_index = 0
 
-local function get_blockpos(pos)
-	return {x = math.floor(pos.x / 16),
-	        y = math.floor(pos.y / 16),
-	        z = math.floor(pos.z / 16)}
-end
+local move_entities_globalstep_part1
+local is_active
 
-local active_blocks = {} -- These only contain active blocks near players (i.e., not forceloaded ones)
+if pipeworks.use_real_entities then
+	local active_blocks = {} -- These only contain active blocks near players (i.e., not forceloaded ones)
 
-local move_entities_globalstep_part1 = function(dtime)
-	local active_block_range = tonumber(minetest.settings:get("active_block_range")) or 2
-	local new_active_blocks = {}
-	for _, player in ipairs(minetest.get_connected_players()) do
-		local blockpos = get_blockpos(player:get_pos())
-		local minp = vector.subtract(blockpos, active_block_range)
-		local maxp = vector.add(blockpos, active_block_range)
-
-		for x = minp.x, maxp.x do
-		for y = minp.y, maxp.y do
-		for z = minp.z, maxp.z do
-			local pos = {x = x, y = y, z = z}
-			new_active_blocks[minetest.hash_node_position(pos)] = pos
-		end
-		end
-		end
+	local function get_blockpos(pos)
+		return {x = math.floor(pos.x / 16),
+				y = math.floor(pos.y / 16),
+				z = math.floor(pos.z / 16)}
 	end
-	active_blocks = new_active_blocks
-	-- todo: callbacks on block load/unload
-end
 
-local function is_active(pos)
-	return active_blocks[minetest.hash_node_position(get_blockpos(pos))] ~= nil
+	move_entities_globalstep_part1 = function(dtime)
+		local active_block_range = tonumber(minetest.settings:get("active_block_range")) or 2
+		for key in pairs(active_blocks) do
+			active_blocks[key] = nil
+		end
+		for _, player in ipairs(minetest.get_connected_players()) do
+			local blockpos = get_blockpos(player:get_pos())
+			local minpx = blockpos.x - active_block_range
+			local minpy = blockpos.y - active_block_range
+			local minpz = blockpos.z - active_block_range
+			local maxpx = blockpos.x + active_block_range
+			local maxpy = blockpos.y + active_block_range
+			local maxpz = blockpos.z + active_block_range
+
+			for x = minpx, maxpx do
+				for y = minpy, maxpy do
+					for z = minpz, maxpz do
+						local pos = {x = x, y = y, z = z}
+						active_blocks[minetest.hash_node_position(pos)] = true
+					end
+				end
+			end
+		end
+		-- todo: callbacks on block load/unload
+	end
+
+	is_active = function(pos)
+		return active_blocks[minetest.hash_node_position(get_blockpos(pos))] ~= nil
+	end
+else
+	move_entities_globalstep_part1 = function()
+	end
+
+	is_active = function()
+		return false
+	end
 end
 
 local entitydef_default = {
@@ -146,11 +168,15 @@ local entitydef_default = {
 		if not is_active(entity_pos) then
 			return
 		end
-		local ent = minetest.add_entity(entity_pos, entity.name):get_luaentity()
+		local object = minetest.add_entity(entity_pos, entity.name)
+		if not object then
+			return
+		end
+		local ent = object:get_luaentity()
 		ent:from_data(entity.data)
 		ent.parent_id = self._id
 		ent.attached_id = index
-		entity.entity = ent.object
+		entity.entity = object
 		local master = self._attached_entities_master
 		if master then
 			self:_attach(index, master)
@@ -206,7 +232,7 @@ local entitydef_default = {
 		end
 	end,
 	get_velocity = function(self)
-		return vector.new(self._velocity)	
+		return vector.new(self._velocity)
 	end,
 	set_velocity = function(self, velocity)
 		self._velocity = vector.new(velocity)
@@ -284,7 +310,7 @@ function luaentity.add_entity(pos, name)
 		_acceleration = {x = 0, y = 0, z = 0},
 		_attached_entities = {},
 	}
-	
+
 	local prototype = luaentity.registered_entities[name]
 	setmetatable(entity, prototype) -- Default to prototype for other methods
 	luaentity.entities[index] = entity
@@ -313,19 +339,20 @@ end
 function luaentity.get_objects_inside_radius(pos, radius)
 	local objects = {}
 	local index = 1
-	for id, entity in pairs(luaentity.entities) do
+	for _, entity in pairs(luaentity.entities) do
 		if vector.distance(pos, entity:get_pos()) <= radius then
 			objects[index] = entity
 			index = index + 1
 		end
 	end
+	return objects
 end
 
 local move_entities_globalstep_part2 = function(dtime)
 	if not luaentity.entities then
 		luaentity.entities = read_entities()
 	end
-	for id, entity in pairs(luaentity.entities) do
+	for _, entity in pairs(luaentity.entities) do
 		local master = entity._attached_entities_master
 		local master_def = master and entity._attached_entities[master]
 		local master_entity = master_def and master_def.entity
@@ -335,6 +362,8 @@ local move_entities_globalstep_part2 = function(dtime)
 			entity._velocity = master_entity:get_velocity()
 			entity._acceleration = master_entity:get_acceleration()
 		else
+			entity._velocity = entity._velocity or vector.new(0,0,0)
+			entity._acceleration = entity._acceleration or vector.new(0,0,0)
 			entity._pos = vector.add(vector.add(
 				entity._pos,
 				vector.multiply(entity._velocity, dtime)),
@@ -362,13 +391,36 @@ local move_entities_globalstep_part2 = function(dtime)
 	end
 end
 
-local handle_active_blocks_timer = 0.1
+-- dtime after which there is an update (or skip).
+local dtime_threshold = pipeworks.entity_update_interval
+-- Accumulated dtime since last update (or skip).
+local dtime_accum = 0
+-- Delayed dtime accumulated due to skipped updates.
+local dtime_delayed = 0
+local skip_update = false
 
 minetest.register_globalstep(function(dtime)
-	handle_active_blocks_timer = handle_active_blocks_timer + dtime
-	if dtime < 0.2 or handle_active_blocks_timer >= (dtime * 3) then
-		handle_active_blocks_timer = 0.1
-		move_entities_globalstep_part1(dtime)
-		move_entities_globalstep_part2(dtime)
+	if dtime >= 0.2 and dtime_delayed < 1 then
+		-- Reduce activity when the server is lagging.
+		skip_update = true
 	end
+
+	dtime_accum = dtime_accum + dtime
+	if dtime_accum < dtime_threshold then
+		return
+	end
+
+	if skip_update then
+		dtime_delayed = dtime_delayed + dtime_accum
+		skip_update = false
+	else
+		move_entities_globalstep_part1(dtime_accum + dtime_delayed)
+		move_entities_globalstep_part2(dtime_accum + dtime_delayed)
+		dtime_delayed = 0
+	end
+
+	-- Tune the threshold so that the average interval is pipeworks.entity_update_interval.
+	dtime_threshold = math.max(dtime_threshold + (pipeworks.entity_update_interval - dtime_accum) / 10, 0)
+
+	dtime_accum = 0
 end)
