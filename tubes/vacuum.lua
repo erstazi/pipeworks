@@ -122,6 +122,6 @@ minetest.register_lbm({
 	label = "Vacuum tube node timer starter",
 	name = "pipeworks:vacuum_tube_start",
 	nodenames = {"group:vacuum_tube"},
-	run_at_every_load = false,
+	run_at_every_load = true,
 	action = set_timer,
 })
