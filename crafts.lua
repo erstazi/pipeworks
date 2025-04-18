@@ -306,6 +306,21 @@ if pipeworks.enable_dispenser then
 end
 
 if pipeworks.enable_node_breaker then
+	-- crafting items for creating node breakers
+	minetest.register_craftitem("pipeworks:gear", {
+		description = "Gear",
+		inventory_image = "pipeworks_gear.png",
+	})
+
+	minetest.register_craft( {
+		output = "pipeworks:gear 6",
+		recipe = {
+			{ "", 			"default:steel_ingot",	"" },
+			{ "default:steel_ingot","default:stone",	"default:steel_ingot" },
+			{ "",			"default:steel_ingot",	"" }
+		},
+	})
+
 	minetest.register_craft({
 		output = "pipeworks:nodebreaker_off",
 		recipe = {
